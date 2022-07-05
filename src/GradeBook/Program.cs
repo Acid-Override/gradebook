@@ -11,7 +11,7 @@ namespace GradeBook
 
           static void Main(string[] args) //main method
           {
-              var book = new Book();
+              var book = new Book("The Grade Book");
               //book.grades.Add(101);
               book.AddGrade(89.1);
               book.AddGrade(90.5);
@@ -20,10 +20,12 @@ namespace GradeBook
               book.ListGrades();
               book.Average();
 
-              while ( input != 'Q' )
+              string input = "A";
+
+              while ( !String.Equals(input, "Q" ))
               {
               WriteLine("(E)nter score, (C)ompute Average, (S)how scores ? ");
-              var input = ReadLine();
+              input = ReadLine();
               System.Console.WriteLine($"input = {input}");
               if ( input == "S" )
               {
