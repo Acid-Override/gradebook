@@ -1,0 +1,15 @@
+/Users/jupiter/Projects/gradebook/src/GradeBook/bin/Debug/net6.0/GradeBook
+/Users/jupiter/Projects/gradebook/src/GradeBook/bin/Debug/net6.0/GradeBook.deps.json
+/Users/jupiter/Projects/gradebook/src/GradeBook/bin/Debug/net6.0/GradeBook.runtimeconfig.json
+/Users/jupiter/Projects/gradebook/src/GradeBook/bin/Debug/net6.0/GradeBook.dll
+/Users/jupiter/Projects/gradebook/src/GradeBook/bin/Debug/net6.0/GradeBook.pdb
+/Users/jupiter/Projects/gradebook/src/GradeBook/obj/Debug/net6.0/GradeBook.csproj.AssemblyReference.cache
+/Users/jupiter/Projects/gradebook/src/GradeBook/obj/Debug/net6.0/GradeBook.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jupiter/Projects/gradebook/src/GradeBook/obj/Debug/net6.0/GradeBook.AssemblyInfoInputs.cache
+/Users/jupiter/Projects/gradebook/src/GradeBook/obj/Debug/net6.0/GradeBook.AssemblyInfo.cs
+/Users/jupiter/Projects/gradebook/src/GradeBook/obj/Debug/net6.0/GradeBook.csproj.CoreCompileInputs.cache
+/Users/jupiter/Projects/gradebook/src/GradeBook/obj/Debug/net6.0/GradeBook.dll
+/Users/jupiter/Projects/gradebook/src/GradeBook/obj/Debug/net6.0/refint/GradeBook.dll
+/Users/jupiter/Projects/gradebook/src/GradeBook/obj/Debug/net6.0/GradeBook.pdb
+/Users/jupiter/Projects/gradebook/src/GradeBook/obj/Debug/net6.0/GradeBook.genruntimeconfig.cache
+/Users/jupiter/Projects/gradebook/src/GradeBook/obj/Debug/net6.0/ref/GradeBook.dll
