@@ -2,18 +2,18 @@
 
 namespace GradeBook
 {
-  class Book
+  public class Book
   {
     public Book(string name)
     {
       grades = new List<double>();
       this.name = name;
     }
-     public void AddGrade(double grade)
+    public void AddGrade(double grade)
     {
 
       grades.Add(grade);
-      foreach ( var item in grades )
+      foreach (var item in grades)
       {
         System.Console.WriteLine($"The current number is = {item}");
       }
@@ -22,53 +22,79 @@ namespace GradeBook
     }
     public void ListGrades()
     {
-      foreach ( var item in grades )
+      foreach (var item in grades)
       {
         System.Console.WriteLine($"ListGrades says your number is = {item}");
       }
     }
 
-        internal void ShowStatistics()
-        {
-            //throw new NotImplementedException();
-            Console.WriteLine("Statistics are:");
-            this.Average();
-            this.lowestGrade();
-            this.highestGrade();
-
-        }
-
-        public void Average()
+    public void ShowStatistics()
     {
-            var avg = grades.Average();
+      //throw new NotImplementedException();
+      Console.WriteLine("Statistics are:");
+      Average();
+      LowestGrade();
+      HighestGrade();
+
+    }
+
+    public void Average()
+    {
+      var avg = grades.Average();
       System.Console.WriteLine($"Average = {avg}");
     }
 
     public void ThisName(string newName)
     {
-      System.Console.WriteLine(this.name);
+      System.Console.WriteLine($"First = {this.name}");
       this.name = newName;
-      System.Console.WriteLine(this.name);
+      System.Console.WriteLine($"Second = {this.name}");
     }
-    public void highestGrade()
+    public void HighestGrade()
     {
       var largest = double.MinValue;
-      foreach ( var item in grades )
+      Console.WriteLine($"Max Grades = {grades.Max()}");
+      foreach (var item in grades)
       {
         largest = Math.Max(largest, item);
       }
-        System.Console.WriteLine($"Largest = {largest}");
+      System.Console.WriteLine($"Largest = {largest}");
     }
-    public void lowestGrade()
+    public void LowestGrade()
     {
-            var lowest = double.MaxValue;
+      var lowest = double.MaxValue;
 
-    foreach ( var item in grades )
-            {
-                lowest = Math.Min(lowest, item);
-            }
-            Console.WriteLine($"Lowest = {lowest}");
+      foreach (var item in grades)
+      {
+        lowest = Math.Min(lowest, item);
+      }
+      Console.WriteLine($"Lowest = {lowest}");
     }
+
+    public Statistics GetStats() //return type of Statistics
+        {
+            var result = new Statistics();
+            result.Average = 0.0;
+            result.High = double.MinValue;
+            result.Low = double.MaxValue;
+
+            foreach ( var grade in grades )
+            {
+                result.Low = Math.Min(grade, result.Low);
+                result.High = Math.Max(grade, result.High);
+                result.Average += grade;
+            }
+            result.Average /= grades.Count;
+
+            Console.WriteLine($"Average = {result.Average}");
+            Console.WriteLine($"High = {result.High}");
+            Console.WriteLine($"Low = {result.Low}");
+            Console.WriteLine(result);
+
+            return result;
+
+
+        }
 
     //List<double> grades = new List<double>();
     private List<double> grades;
