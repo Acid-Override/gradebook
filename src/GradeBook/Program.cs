@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//using System;
+//using System.Collections.Generic;
 using static System.Console;
-using static System.Math;
+//using static System.Math;
 using static System.String;
 
 namespace GradeBook
@@ -24,7 +24,7 @@ namespace GradeBook
 
               while ( !String.Equals(input, "Q" ))
               {
-              WriteLine("(E)nter score, (C)ompute Average, (S)how scores ? ");
+              WriteLine("(E)nter score, (C)ompute Average, (S)how scores, (H)ighest grade, (L)owest grade ? ");
               input = ReadLine();
               System.Console.WriteLine($"input = {input}");
               if ( input == "S" )
@@ -43,6 +43,24 @@ namespace GradeBook
                 book.AddGrade(currentGrade);
                 book.ListGrades();
               }
+              if ( input == "N" )
+              {
+                WriteLine( "Name?");
+                var nameInput = ReadLine();
+                if ( !IsNullOrEmpty(nameInput))
+                {
+                book.thisName(nameInput);
+                }
+              }
+              if ( input == "H" )
+              {
+                book.highestGrade();
+              }
+              if ( input == "L")
+                {
+                    book.lowestGrade();
+                }
+
 
               }
 
