@@ -27,12 +27,24 @@ namespace GradeBook
         System.Console.WriteLine($"ListGrades says your number is = {item}");
       }
     }
-    public void Average()
+
+        internal void ShowStatistics()
+        {
+            //throw new NotImplementedException();
+            Console.WriteLine("Statistics are:");
+            this.Average();
+            this.lowestGrade();
+            this.highestGrade();
+
+        }
+
+        public void Average()
     {
-      System.Console.WriteLine(grades.Average());
+            var avg = grades.Average();
+      System.Console.WriteLine($"Average = {avg}");
     }
 
-    public void thisName(string newName)
+    public void ThisName(string newName)
     {
       System.Console.WriteLine(this.name);
       this.name = newName;
@@ -51,11 +63,11 @@ namespace GradeBook
     {
             var lowest = double.MaxValue;
 
-      foreach ( var item in grades )
+    foreach ( var item in grades )
             {
                 lowest = Math.Min(lowest, item);
             }
-            Console.WriteLine($"{lowest}");
+            Console.WriteLine($"Lowest = {lowest}");
     }
 
     //List<double> grades = new List<double>();

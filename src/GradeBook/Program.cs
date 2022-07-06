@@ -17,14 +17,16 @@ namespace GradeBook
               book.AddGrade(90.5);
               book.AddGrade(88.3);
               book.AddGrade(94.3);
-              book.ListGrades();
-              book.Average();
+              //book.ListGrades();
+              //book.Average();
 
-              string input = "A";
+              //book.ShowStatistics();
+
+            string input = "A";
 
               while ( !String.Equals(input, "Q" ))
               {
-              WriteLine("(E)nter score, (C)ompute Average, (S)how scores, (H)ighest grade, (L)owest grade ? ");
+              WriteLine("(E)nter score, (C)ompute Average, (S)how scores, (H)ighest grade, (L)owest grade, (ST)atistics, (Q)uit ? ");
               input = ReadLine();
               System.Console.WriteLine($"input = {input}");
               if ( input == "S" )
@@ -49,7 +51,7 @@ namespace GradeBook
                 var nameInput = ReadLine();
                 if ( !IsNullOrEmpty(nameInput))
                 {
-                book.thisName(nameInput);
+                book.ThisName(nameInput);
                 }
               }
               if ( input == "H" )
@@ -59,6 +61,10 @@ namespace GradeBook
               if ( input == "L")
                 {
                     book.lowestGrade();
+                }
+              if ( input == "ST" )
+                {
+                    book.ShowStatistics();
                 }
 
 
