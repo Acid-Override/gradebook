@@ -6,7 +6,7 @@ namespace GradeBook.Tests;
 public class BookTests
 {
     [Fact]
-    public void Test1()
+    public void BasicMathTest()
     {
         // arrange
         var x = 5;
@@ -18,7 +18,7 @@ public class BookTests
         Assert.Equal(expected, actual);
     }
     [Fact]
-    public void Test2()
+    public void BookCalculatesAnAverageGrade()
     {
         // arrange
         var book = new Book("");  // <- is this legal with empty string? verify with BA

@@ -3,36 +3,112 @@ using Xunit;
 
 namespace GradeBook.Tests;
 
-public class BookTests
+public class TypeTests
 {
+
+    /*
+    C# can pass by reference by using the <ref> key word.  Must apply <ref> to method call and method definition to make
+    sure this is what you really want.
+     */
+
     [Fact]
-    public void BasicMathTest()
+    public void CSharpCanPassByRef()
     {
-        // arrange
-        var x = 5;
-        var y = 2;
-        var expected = 7;
-        // act
-        var actual = x + y;
-        // assert
-        Assert.Equal(expected, actual);
+        var book1 = GetBook("First Book");
+        GetBooksSetName(ref book1, "Copy of First Book");
+
+
+        Assert.Equal("Copy of First Book", book1.Name);
+
     }
-    [Fact]
-    public void BookCalculatesAnAverageGrade()
+
+    private void GetBooksSetName(ref Book book, string name)
     {
-        // arrange
-        var book = new Book("");  // <- is this legal with empty string? verify with BA
-        book.AddGrade(89.1);
-        book.AddGrade(90.5);
-        book.AddGrade(77.3);
-        // act
-        var result = book.GetStats();  // Going to build an OBJECT with Average, Max, Min Keys
+        book = new Book(name);
+
+    }
+
+    /*
+    We made a copy of the value inside variable 'book' and storing a reference to the object
+    in book1.  Storing value into new different memory location.  Value isn't going to change
+    pass a variable to another method, we don't want new method to unexpectedly change the value or reference
+    that is inside that variable.  That would be unexpected side effect.
+
+    Always always always pass by value!
+    */
+    [Fact]
+    public void CSharpIsPassByValue()
+    {
+        var book1 = GetBook("First Book");
+        GetBooksSetName(book1, "Copy of First Book");
 
 
-        // assert
-        Assert.Equal(85.6, result.Average, 1);
-        Assert.Equal(90.5, result.High, 1);
-        Assert.Equal(77.3, result.Low, 1);
+        Assert.Equal("First Book", book1.Name);
 
+    }
+
+    private void GetBooksSetName(Book book, string name)
+    {
+        book = new Book(name);
+
+    }
+
+    [Fact]
+    public void CanSetNameFromReference()
+    {
+        var book1 = GetBook("First Book");
+        
+        Console.WriteLine($"book1 name = {book1.Name}");
+        SetName(book1, "New Book");
+        Console.WriteLine($"book1 name after= {book1.Name}");
+
+        //book1.ThisName("New Book");
+
+
+        Assert.Equal("New Book", book1.Name);
+        
+
+    }
+
+    private void SetName(Book book, string name)
+    {
+        book.ThisName(name);
+        
+    }
+
+    [Fact]
+    public void GetBookReturnsDifferentObjects()
+    {
+        var book1 = GetBook("Book 1");
+        var book2 = GetBook("Book 2");
+
+        Console.WriteLine($"book1 name = {book1.Name}");
+        Console.WriteLine($"book2 name = {book2.Name}");
+
+        Assert.Equal("Book 1", book1.Name);
+        Assert.Equal("Book 2", book2.Name);
+   
+    }
+
+    [Fact]
+    public void TwoVariablesReferenceSameObject()
+    {
+        var book3 = GetBook("Book 3");
+        var book4 = book3;
+
+        Console.WriteLine($"book3 name = {book3.Name}");
+        Console.WriteLine($"book4 name = {book4.Name}");
+
+        //Assert.Equal("Book 3", book3.Name);
+        //Assert.Equal("Book 3", book4.Name);
+
+        //Assert.Same(book3, book4);
+        Assert.True(Object.ReferenceEquals(book3, book4));
+
+    }
+
+    Book GetBook(string name)
+    {
+        return new Book(name);
     }
 }

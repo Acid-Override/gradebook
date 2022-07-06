@@ -7,7 +7,7 @@ namespace GradeBook
     public Book(string name)
     {
       grades = new List<double>();
-      this.name = name;
+      this.Name = name;
     }
     public void AddGrade(double grade)
     {
@@ -46,9 +46,9 @@ namespace GradeBook
 
     public void ThisName(string newName)
     {
-      System.Console.WriteLine($"First = {this.name}");
-      this.name = newName;
-      System.Console.WriteLine($"Second = {this.name}");
+      System.Console.WriteLine($"First = {this.Name}");
+      this.Name = newName;
+      System.Console.WriteLine($"Second = {this.Name}");
     }
     public void HighestGrade()
     {
@@ -89,7 +89,7 @@ namespace GradeBook
             Console.WriteLine($"Average = {result.Average}");
             Console.WriteLine($"High = {result.High}");
             Console.WriteLine($"Low = {result.Low}");
-            Console.WriteLine(result);
+            Console.WriteLine(Name);
 
             return result;
 
@@ -98,6 +98,6 @@ namespace GradeBook
 
     //List<double> grades = new List<double>();
     private List<double> grades;
-    private string name;
+    public string Name;
   }
 }
