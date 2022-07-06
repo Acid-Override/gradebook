@@ -68,7 +68,8 @@ namespace GradeBook
         }
         if ( input == "GS" )
                 {
-                    book.GetStats();
+                    var stats = book.GetStats();
+                    WriteLine($"{stats.Average}, {stats.High}, {stats.Low}");
                 }
 
 
