@@ -35,4 +35,14 @@ public class BookTests
         Assert.Equal(77.3, result.Low, 1);
 
     }
+    [Fact]
+    public void AddGradeAcceptsCorrectValue()
+    {
+        var book = new Book("");
+        book.AddGrade(105);
+        var result = book.GetCount();
+        Console.WriteLine($"GetCount result = {result}");
+
+        Assert.Equal(0, result);
+    }
 }

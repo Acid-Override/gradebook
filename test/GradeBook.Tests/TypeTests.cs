@@ -5,6 +5,8 @@ namespace GradeBook.Tests;
 
 public class TypeTests
 {
+
+
     /*
      * Can pass by reference and modify original "x" variable with the use of <ref> || <out>
      * */
@@ -28,7 +30,7 @@ public class TypeTests
     public void ValueTypesAlsoPassByValue()
     {
         var x = GetInt();
-        Console.WriteLine($"randomNumber = {x}");
+        Console.WriteLine($"Number = {x}");
         SetInt(x);
         Console.WriteLine($"x after SetInt = {x}");
 
@@ -70,6 +72,8 @@ public class TypeTests
 
 
 
+
+
     /*
     We made a copy of the value inside variable 'book' and storing a reference to the object
     in book1.  Storing value into new different memory location.  Value isn't going to change
@@ -105,17 +109,32 @@ public class TypeTests
         Console.WriteLine($"book1 name after= {book1.Name}");
 
         //book1.ThisName("New Book");
-
-
         Assert.Equal("New Book", book1.Name);
         
-
     }
-
     private void SetName(Book book, string name)
     {
-        book.ThisName(name);
-        
+        book.ThisName(name);        
+    }
+
+
+    //Strings are immutable
+
+    [Fact]
+    public void StringsBehaveLikeValueTypes()
+    {
+        string name = "Atwood";
+        string upper = MakeUpperCase(name);
+        Console.WriteLine(name);
+        Console.WriteLine(upper);
+        Assert.Equal("Atwood", name);
+        Assert.Equal("ATWOOD", upper);
+    }
+
+    private string MakeUpperCase(string name)
+    {
+        return name.ToUpper();
+        // ToUpper returns a COPY of a string
     }
 
     [Fact]

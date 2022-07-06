@@ -11,13 +11,22 @@ namespace GradeBook
     }
     public void AddGrade(double grade)
     {
-
-      grades.Add(grade);
-      foreach (var item in grades)
+      if ( grade <= 100 && grade >= 0 )
       {
-        System.Console.WriteLine($"The current number is = {item}");
+        grades.Add(grade);
       }
-      System.Console.WriteLine(grades.Count);
+      else
+      {
+        Console.WriteLine("Invalid value");          
+      }
+
+
+      //grades.Add(grade);
+      //foreach (var item in grades)
+      //{
+      //  System.Console.WriteLine($"The current number is = {item}");
+      //}
+      //System.Console.WriteLine(grades.Count);
 
     }
     public void ListGrades()
@@ -42,6 +51,11 @@ namespace GradeBook
     {
       var avg = grades.Average();
       System.Console.WriteLine($"Average = {avg}");
+    }
+
+    public int GetCount()
+    {
+            return grades.Count;
     }
 
     public void ThisName(string newName)

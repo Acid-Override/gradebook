@@ -71,9 +71,7 @@ namespace GradeBook
                     var stats = book.GetStats();
                     WriteLine($"{stats.Average}, {stats.High}, {stats.Low}");
                 }
-
-
-      }
+        }
 
 
       //var numbers = new[] {12.7, 10.3, 6.11, 15, 10};
