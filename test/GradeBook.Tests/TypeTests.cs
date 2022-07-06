@@ -5,6 +5,51 @@ namespace GradeBook.Tests;
 
 public class TypeTests
 {
+    /*
+     * Can pass by reference and modify original "x" variable with the use of <ref> || <out>
+     * */
+    [Fact]
+    public void ValueTypesCanPassByReferenceWithHelp()
+    {
+        var x = GetInt();        
+        SetInt(out x);      
+
+        Assert.Equal(42, x);
+    }
+    private void SetInt(out int x)
+    {
+        x = 42;
+    }
+    
+
+
+
+    [Fact]
+    public void ValueTypesAlsoPassByValue()
+    {
+        var x = GetInt();
+        Console.WriteLine($"randomNumber = {x}");
+        SetInt(x);
+        Console.WriteLine($"x after SetInt = {x}");
+
+        Assert.Equal(3, x);
+
+    }
+    // the value "3" is copied into the (int x) parameter
+    // passed by value
+
+    private void SetInt(int x)
+    {
+        x = 42;
+    }
+
+    private int GetInt()
+    {
+        //var random = new Random();
+        //int randomNumber = random.Next();
+        //return randomNumber;
+        return 3;
+    }
 
     /*
     C# can pass by reference by using the <ref> key word.  Must apply <ref> to method call and method definition to make
@@ -14,19 +59,16 @@ public class TypeTests
     [Fact]
     public void CSharpCanPassByRef()
     {
-        var book1 = GetBook("First Book");
+        var book1 = GetBook("First Book");        
         GetBooksSetName(ref book1, "Copy of First Book");
-
-
         Assert.Equal("Copy of First Book", book1.Name);
-
     }
-
     private void GetBooksSetName(ref Book book, string name)
     {
         book = new Book(name);
-
     }
+
+
 
     /*
     We made a copy of the value inside variable 'book' and storing a reference to the object
@@ -46,7 +88,7 @@ public class TypeTests
         Assert.Equal("First Book", book1.Name);
 
     }
-
+    //c# block the modification of the original book1 object
     private void GetBooksSetName(Book book, string name)
     {
         book = new Book(name);
@@ -85,8 +127,10 @@ public class TypeTests
         Console.WriteLine($"book1 name = {book1.Name}");
         Console.WriteLine($"book2 name = {book2.Name}");
 
-        Assert.Equal("Book 1", book1.Name);
-        Assert.Equal("Book 2", book2.Name);
+        //Assert.Equal("Book 1", book1.Name);
+        //Assert.Equal("Book 2", book2.Name);
+
+        Assert.NotSame(book1, book2);
    
     }
 
@@ -95,6 +139,7 @@ public class TypeTests
     {
         var book3 = GetBook("Book 3");
         var book4 = book3;
+        //book4.Name = "Hello";
 
         Console.WriteLine($"book3 name = {book3.Name}");
         Console.WriteLine($"book4 name = {book4.Name}");
