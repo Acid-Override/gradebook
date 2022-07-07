@@ -51,12 +51,14 @@ public class TypeTests
 
  string IncrementCount(string message)
   {
+    System.Console.WriteLine($"IncrementCount message = {message} $ {count}");
     count++;
-    return message.ToLower();
+    return message.ToUpper();
   }
 
   string AnotherReturnMessage(string message)
   {
+    System.Console.WriteLine($"AnotherReturnMessage = {message} $ {count}");
     count++;
     return message;
   }
