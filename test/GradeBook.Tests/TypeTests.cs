@@ -4,6 +4,7 @@ using Xunit;
 namespace GradeBook.Tests;
 
 public delegate string WriteLogDelegate(string logMessage);
+public delegate string AnotherWriteLogDelegate(string foo);
 
 public class TypeTests
 {
@@ -28,6 +29,39 @@ public class TypeTests
   {
     return message;
   }
+
+ int count = 0;
+
+ [Fact]
+  public void AnotherWriteLogDelegateCanPointToMethod()
+  {
+
+    AnotherWriteLogDelegate log = AnotherReturnMessage;  // 1
+
+
+    log += new AnotherWriteLogDelegate(AnotherReturnMessage); // 2
+    log += new AnotherWriteLogDelegate(IncrementCount); // 3
+    //shorthand version of above
+    log += AnotherReturnMessage; // 4
+    log += IncrementCount; // 5
+
+    var result = log("Hello!");
+    Assert.Equal(5, count);
+  }
+
+ string IncrementCount(string message)
+  {
+    count++;
+    return message.ToLower();
+  }
+
+  string AnotherReturnMessage(string message)
+  {
+    count++;
+    return message;
+  }
+
+
 
   /*
    * Can pass by reference and modify original "x" variable with the use of <ref> || <out>
