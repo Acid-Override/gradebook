@@ -50,9 +50,17 @@ namespace GradeBook
             var grade = double.Parse(input);
             book.AddGrade(grade);
           }
-          catch(Exception ex)
+          catch (ArgumentException ex)
           {
             System.Console.WriteLine(ex.Message);
+          }
+          catch (FormatException ex)
+          {
+            System.Console.WriteLine(ex.Message);
+          }
+          finally
+          {
+            System.Console.WriteLine("Finally Block of Code");
           }
           // if (!IsNullOrEmpty(number) && double.TryParse(number, out var currentGrade))
           // {
