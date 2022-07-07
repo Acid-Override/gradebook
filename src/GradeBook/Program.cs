@@ -27,6 +27,10 @@ namespace GradeBook
         WriteLine("\n(E)nter score \n(C)ompute Average\n (S)how scores\n (H)ighest grade\n " +
             "(L)owest grade\n (ST)atistics\n (GS)tats\n (LG)Enter Letter Grade\n (SLG) Show Letter Grade\n (N)ame\n (Q)uit ? ");
         var input = ReadLine();
+        if(input == null)
+        {
+          throw new ArgumentException($"Invalid code :  {nameof(input)}");
+        }
         //System.Console.WriteLine($"input = {input}");
         if (input == "q" || input == "Q")
         {
@@ -44,6 +48,10 @@ namespace GradeBook
         {
           WriteLine("Enter a score in (XX.X)?");
           input = Console.ReadLine();
+          if(input == null)
+          {
+            throw new ArgumentException($"Invalid code :  {nameof(input)}");
+          }
 
           try
           {
@@ -81,7 +89,7 @@ namespace GradeBook
           if (!IsNullOrEmpty(letter))
           {
             char c = char.Parse(letter);
-            book.AddLetterGrade(c);
+            book.AddGrade(c);
           }
           else
           {
@@ -116,26 +124,10 @@ namespace GradeBook
         if (input == "gs" || input == "GS")
         {
           var stats = book.GetStats();
+          System.Console.WriteLine(Book.CATEGORY);
           WriteLine($"{stats.Average}, {stats.High}, {stats.Low}");
         }
       }
-
-
-      //var numbers = new[] {12.7, 10.3, 6.11, 15, 10};
-      var grades = new List<double>() { 12.7, 10.3, 6.11, 4.1 };
-      grades.Add(56.1);
-
-      var result = 0.0;
-      foreach (var number in grades)
-      {
-        //System.Console.WriteLine(number);
-        result += number;
-      }
-
-      //var avg = grades.Average();
-      result /= grades.Count;
-      Console.WriteLine($"The student average is {result:N1}");
-
     }
   }
 

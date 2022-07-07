@@ -9,19 +9,47 @@ namespace GradeBook
       grades = new List<double>();
       this.Name = name;
     }
+     public void AddGrade(char letter)
+    {
+      switch (letter)
+      {
+        case 'A':
+          AddGrade(90);
+          break;
+
+        case 'B':
+          AddGrade(80);
+          break;
+
+        case 'C':
+          AddGrade(70);
+          break;
+
+        case 'D':
+          AddGrade(60);
+          break;
+
+        case 'F':
+          AddGrade(50);
+          break;
+
+        default:
+          AddGrade(0);
+          break;
+      }
+    }
+
     public void AddGrade(double grade)
     {
-      if ( grade <= 100 && grade >= 0 )
+      if (grade <= 100 && grade >= 0)
       {
         grades.Add(grade);
       }
       else
       {
-        Console.WriteLine("Invalid value");
-        throw new ArgumentException($"Invalid {nameof(grade)}");
+        //Console.WriteLine("Invalid value");
+        throw new ArgumentException($"Invalid code :  {nameof(grade)}");
       }
-
-
       //grades.Add(grade);
       //foreach (var item in grades)
       //{
@@ -38,64 +66,33 @@ namespace GradeBook
       }
     }
 
-    public void AddLetterGrade(char letter)
-        {
-            switch(letter)
-            {
-                case 'A':
-                    AddGrade(90);
-                    break;
-
-                case 'B':
-                    AddGrade(80);
-                    break;
-
-                case 'C':
-                    AddGrade(70);
-                    break;
-
-                case 'D':
-                    AddGrade(60);
-                    break;
-
-                case 'F':
-                    AddGrade(50);
-                    break;
-
-                default:
-                    AddGrade(0);
-                    break;
-            }
-
-        }
-
     public void ShowLetterGrade()
-        {
-            var avg = grades.Average();
-            Console.WriteLine($"Average is : {avg}");
+    {
+      var avg = grades.Average();
+      Console.WriteLine($"Average is : {avg}");
 
-            switch(avg)
-            {
-                case var d when d > 90:
-                    Console.WriteLine("A");
-                    break;
-                case var d when d > 80:
-                    Console.WriteLine("B");
-                    break;
-                case var d when d > 70:
-                    Console.WriteLine("C");
-                    break;
-                case var d when d > 60:
-                    Console.WriteLine("D");
-                    break;
-                default:
-                    Console.WriteLine("F");
-                    break;
-            }
-        }
+      switch (avg)
+      {
+        case var d when d > 90:
+          Console.WriteLine("A");
+          break;
+        case var d when d > 80:
+          Console.WriteLine("B");
+          break;
+        case var d when d > 70:
+          Console.WriteLine("C");
+          break;
+        case var d when d > 60:
+          Console.WriteLine("D");
+          break;
+        default:
+          Console.WriteLine("F");
+          break;
+      }
+    }
 
     public void ShowStatistics()
-    {      
+    {
       Console.WriteLine("Statistics are:\n");
       Average();
       LowestGrade();
@@ -110,7 +107,7 @@ namespace GradeBook
 
     public int GetCount()
     {
-            return grades.Count;
+      return grades.Count;
     }
 
     public void ThisName(string newName)
@@ -143,63 +140,72 @@ namespace GradeBook
     }
 
     public Statistics GetStats() //return type of Statistics
-        {
-            var result = new Statistics();
-            result.Average = 0.0;
-            result.High = double.MinValue;
-            result.Low = double.MaxValue;
-            //result.Letter = '';
+    {
+      var result = new Statistics();
+      result.Average = 0.0;
+      result.High = double.MinValue;
+      result.Low = double.MaxValue;
 
-            //foreach ( var grade in grades )
-            //{
-            //    result.Low = Math.Min(grade, result.Low);
-            //    result.High = Math.Max(grade, result.High);
-            //    result.Average += grade;
-            //}
+      //foreach ( var grade in grades )
+      //{
+      //    result.Low = Math.Min(grade, result.Low);
+      //    result.High = Math.Max(grade, result.High);
+      //    result.Average += grade;
+      //}
 
-            var i = 0;
-            do
-            {
-                result.Low = Math.Min(grades[i], result.Low);
-                result.High = Math.Max(grades[i], result.High);
-                result.Average += grades[i];
-                i++;
-            } while (i < grades.Count);
+      var i = 0;
+      do
+      {
+        result.Low = Math.Min(grades[i], result.Low);
+        result.High = Math.Max(grades[i], result.High);
+        result.Average += grades[i];
+        i++;
+      } while (i < grades.Count);
 
-            result.Average /= grades.Count;
+      result.Average /= grades.Count;
 
-            switch (result.Average)
-            {
-                case var d when d > 90:
-                    result.Letter = 'A';
-                    break;
-                case var d when d > 80:
-                    result.Letter = 'B';
-                    break;
-                case var d when d > 70:
-                    result.Letter = 'C';
-                    break;
-                case var d when d > 60:
-                    result.Letter = 'C';
-                    break;
-                default:
-                    result.Letter = 'F';
-                    break;
-            }
+      switch (result.Average)
+      {
+        case var d when d > 90:
+          result.Letter = 'A';
+          break;
+        case var d when d > 80:
+          result.Letter = 'B';
+          break;
+        case var d when d > 70:
+          result.Letter = 'C';
+          break;
+        case var d when d > 60:
+          result.Letter = 'C';
+          break;
+        default:
+          result.Letter = 'F';
+          break;
+      }
 
-            Console.WriteLine($"Average = {result.Average:N1}");
-            Console.WriteLine($"High = {result.High}");
-            Console.WriteLine($"Low = {result.Low}");
-            Console.WriteLine($"Letter = {result.Letter}");
-            Console.WriteLine(Name);
+      Console.WriteLine($"For the book named {this.Name}");
+      System.Console.WriteLine($"Category is : {Book.CATEGORY}");
+      Console.WriteLine($"Average = {result.Average:N1}");
+      Console.WriteLine($"High = {result.High}");
+      Console.WriteLine($"Low = {result.Low}");
+      Console.WriteLine($"Letter = {result.Letter}");
+      Console.WriteLine(Name);
 
-            return result;
+      return result;
 
 
-        }
+    }
 
     //List<double> grades = new List<double>();
     private List<double> grades;
-    public string Name;
+
+    public string Name
+    {
+      get;
+      set;
+    }
+
+    public const string CATEGORY = "Science";
   }
+
 }

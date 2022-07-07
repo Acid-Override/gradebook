@@ -36,14 +36,14 @@ public class BookTests
         Assert.Equal('B', result.Letter);
 
     }
-    [Fact]
-    public void AddGradeAcceptsCorrectValue()
-    {
-        var book = new Book("");
-        book.AddGrade(105);
-        var result = book.GetCount();
-        Console.WriteLine($"GetCount result = {result}");
+    // [Fact]
+    // public void AddGradeAcceptsCorrectValue()
+    // {
+    //     var book = new Book("");
+    //     book.AddGrade(105);
+    //     var result = book.GetCount();
+    //     Console.WriteLine($"GetCount result = {result}");
 
-        Assert.Equal(0, result);
-    }
+    //     Assert.Equal(0, result);
+    // }
 }
