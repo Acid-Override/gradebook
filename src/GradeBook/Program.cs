@@ -22,13 +22,16 @@ namespace GradeBook
       //book.Average();
       //book.ShowStatistics();
 
-      string input = "A";
-
-      while (!String.Equals(input, "Q"))
+      while (true)
       {
-        WriteLine("(E)nter score, (C)ompute Average, (S)how scores, (H)ighest grade, (L)owest grade, (ST)atistics, (GS)tats, (Q)uit ? ");
-        input = ReadLine();
-        System.Console.WriteLine($"input = {input}");
+        WriteLine("\n(E)nter score \n(C)ompute Average\n (S)how scores\n (H)ighest grade\n " +
+            "(L)owest grade\n (ST)atistics\n (GS)tats\n (LG)Enter Letter Grade\n (SLG) Show Letter Grade\n (N)ame\n (Q)uit ? ");
+        var input = ReadLine();
+        //System.Console.WriteLine($"input = {input}");
+        if (input == "q" || input == "Q")
+                {
+                    break;
+                }
         if (input == "S")
         {
           book.ListGrades();
@@ -42,9 +45,35 @@ namespace GradeBook
           WriteLine("Enter a score in (XX.X)?");
           var number = ReadLine();
           if (!IsNullOrEmpty(number) && double.TryParse(number, out var currentGrade))
+                    {
             book.AddGrade(currentGrade);
-          book.ListGrades();
+          //book.ListGrades();
+                    }
+          else
+                    {
+                        WriteLine("Invalid input");
+                    }
+
         }
+        if (input == "LG")
+                {
+                    WriteLine("Enter a Letter grade (A,B,C,D,F):");
+                    var letter = ReadLine();
+                    
+                    if(!IsNullOrEmpty(letter))
+                    {
+                        char c = char.Parse(letter);
+                        book.AddLetterGrade(c);
+                    }
+                    else
+                    {
+                        WriteLine("Invalid Input");
+                    }
+                }
+        if (input == "SLG")
+                {
+                    book.ShowLetterGrade();
+                }
         if (input == "N")
         {
           WriteLine("Name?");

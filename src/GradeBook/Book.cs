@@ -37,14 +37,68 @@ namespace GradeBook
       }
     }
 
+    public void AddLetterGrade(char letter)
+        {
+            switch(letter)
+            {
+                case 'A':
+                    AddGrade(90);
+                    break;
+
+                case 'B':
+                    AddGrade(80);
+                    break;
+
+                case 'C':
+                    AddGrade(70);
+                    break;
+
+                case 'D':
+                    AddGrade(60);
+                    break;
+
+                case 'F':
+                    AddGrade(50);
+                    break;
+
+                default:
+                    AddGrade(0);
+                    break;
+            }
+
+        }
+
+    public void ShowLetterGrade()
+        {
+            var avg = grades.Average();
+            Console.WriteLine($"Average is : {avg}");
+
+            switch(avg)
+            {
+                case var d when d > 90:
+                    Console.WriteLine("A");
+                    break;
+                case var d when d > 80:
+                    Console.WriteLine("B");
+                    break;
+                case var d when d > 70:
+                    Console.WriteLine("C");
+                    break;
+                case var d when d > 60:
+                    Console.WriteLine("D");
+                    break;
+                default:
+                    Console.WriteLine("F");
+                    break;
+            }
+        }
+
     public void ShowStatistics()
-    {
-      //throw new NotImplementedException();
-      Console.WriteLine("Statistics are:");
+    {      
+      Console.WriteLine("Statistics are:\n");
       Average();
       LowestGrade();
       HighestGrade();
-
     }
 
     public void Average()
@@ -64,6 +118,7 @@ namespace GradeBook
       this.Name = newName;
       System.Console.WriteLine($"Second = {this.Name}");
     }
+
     public void HighestGrade()
     {
       var largest = double.MinValue;
@@ -74,6 +129,7 @@ namespace GradeBook
       }
       System.Console.WriteLine($"Largest = {largest}");
     }
+
     public void LowestGrade()
     {
       var lowest = double.MaxValue;
@@ -92,15 +148,25 @@ namespace GradeBook
             result.High = double.MinValue;
             result.Low = double.MaxValue;
 
-            foreach ( var grade in grades )
+            //foreach ( var grade in grades )
+            //{
+            //    result.Low = Math.Min(grade, result.Low);
+            //    result.High = Math.Max(grade, result.High);
+            //    result.Average += grade;
+            //}
+
+            var i = 0;
+            do
             {
-                result.Low = Math.Min(grade, result.Low);
-                result.High = Math.Max(grade, result.High);
-                result.Average += grade;
-            }
+                result.Low = Math.Min(grades[i], result.Low);
+                result.High = Math.Max(grades[i], result.High);
+                result.Average += grades[i];
+                i++;
+            } while (i < grades.Count);
+
             result.Average /= grades.Count;
 
-            Console.WriteLine($"Average = {result.Average}");
+            Console.WriteLine($"Average = {result.Average:N1}");
             Console.WriteLine($"High = {result.High}");
             Console.WriteLine($"Low = {result.Low}");
             Console.WriteLine(Name);
