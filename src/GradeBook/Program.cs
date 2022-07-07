@@ -17,7 +17,7 @@ namespace GradeBook
       book.AddGrade(90.5);
       book.AddGrade(88.3);
       book.AddGrade(94.3);
-      
+
       //book.ListGrades();
       //book.Average();
       //book.ShowStatistics();
@@ -29,9 +29,9 @@ namespace GradeBook
         var input = ReadLine();
         //System.Console.WriteLine($"input = {input}");
         if (input == "q" || input == "Q")
-                {
-                    break;
-                }
+        {
+          break;
+        }
         if (input == "s" || input == "S")
         {
           book.ListGrades();
@@ -43,37 +43,47 @@ namespace GradeBook
         if (input == "e" || input == "E")
         {
           WriteLine("Enter a score in (XX.X)?");
-          var number = ReadLine();
-          if (!IsNullOrEmpty(number) && double.TryParse(number, out var currentGrade))
-                    {
-            book.AddGrade(currentGrade);
-          //book.ListGrades();
-                    }
-          else
-                    {
-                        WriteLine("Invalid input");
-                    }
+          input = Console.ReadLine();
+
+          try
+          {
+            var grade = double.Parse(input);
+            book.AddGrade(grade);
+          }
+          catch(Exception ex)
+          {
+            System.Console.WriteLine(ex.Message);
+          }
+          // if (!IsNullOrEmpty(number) && double.TryParse(number, out var currentGrade))
+          // {
+          //   book.AddGrade(currentGrade);
+          //   //book.ListGrades();
+          // }
+          // else
+          // {
+          //   WriteLine("Invalid input");
+          // }
 
         }
         if (input == "lg" || input == "LG")
-                {
-                    WriteLine("Enter a Letter grade (A,B,C,D,F):");
-                    var letter = ReadLine();
-                    
-                    if(!IsNullOrEmpty(letter))
-                    {
-                        char c = char.Parse(letter);
-                        book.AddLetterGrade(c);
-                    }
-                    else
-                    {
-                        WriteLine("Invalid Input");
-                    }
-                }
+        {
+          WriteLine("Enter a Letter grade (A,B,C,D,F):");
+          var letter = ReadLine();
+
+          if (!IsNullOrEmpty(letter))
+          {
+            char c = char.Parse(letter);
+            book.AddLetterGrade(c);
+          }
+          else
+          {
+            WriteLine("Invalid Input");
+          }
+        }
         if (input == "slg" || input == "SLG")
-                {
-                    book.ShowLetterGrade();
-                }
+        {
+          book.ShowLetterGrade();
+        }
         if (input == "n" || input == "N")
         {
           WriteLine("Name?");
@@ -87,7 +97,7 @@ namespace GradeBook
         {
           book.HighestGrade();
         }
-        if ( input == "l" || input == "L")
+        if (input == "l" || input == "L")
         {
           book.LowestGrade();
         }
@@ -95,12 +105,12 @@ namespace GradeBook
         {
           book.ShowStatistics();
         }
-        if (input == "gs" || input == "GS" )
-                {
-                    var stats = book.GetStats();
-                    WriteLine($"{stats.Average}, {stats.High}, {stats.Low}");
-                }
+        if (input == "gs" || input == "GS")
+        {
+          var stats = book.GetStats();
+          WriteLine($"{stats.Average}, {stats.High}, {stats.Low}");
         }
+      }
 
 
       //var numbers = new[] {12.7, 10.3, 6.11, 15, 10};
