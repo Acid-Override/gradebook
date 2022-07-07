@@ -11,14 +11,19 @@ public class TypeTests
   [Fact]
   public void WriteLogDelegateCanPointToMethod()
   {
+    // create a variable 'log' of type WriteLogDelegate.
+    // refering to a method, can inoke this method now
     WriteLogDelegate log;
 
+    // delegate, similar to a class, can be instantiated with the 'new' keyword
+    // point 'log' at the method <ReturnMessage>
     log = new WriteLogDelegate(ReturnMessage);
     // log = ReturnMessage can use this shorthand
 
     var result = log("Hello!");
     Assert.Equal("Hello!", result);
   }
+//create a new method for testing purposes
   string ReturnMessage(string message)
   {
     return message;
