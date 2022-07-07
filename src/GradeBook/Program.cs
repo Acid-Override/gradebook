@@ -32,15 +32,15 @@ namespace GradeBook
                 {
                     break;
                 }
-        if (input == "S")
+        if (input == "s" || input == "S")
         {
           book.ListGrades();
         }
-        if (input == "C")
+        if (input == "c" || input == "C")
         {
           book.Average();
         }
-        if (input == "E")
+        if (input == "e" || input == "E")
         {
           WriteLine("Enter a score in (XX.X)?");
           var number = ReadLine();
@@ -55,7 +55,7 @@ namespace GradeBook
                     }
 
         }
-        if (input == "LG")
+        if (input == "lg" || input == "LG")
                 {
                     WriteLine("Enter a Letter grade (A,B,C,D,F):");
                     var letter = ReadLine();
@@ -70,11 +70,11 @@ namespace GradeBook
                         WriteLine("Invalid Input");
                     }
                 }
-        if (input == "SLG")
+        if (input == "slg" || input == "SLG")
                 {
                     book.ShowLetterGrade();
                 }
-        if (input == "N")
+        if (input == "n" || input == "N")
         {
           WriteLine("Name?");
           var nameInput = ReadLine();
@@ -83,19 +83,19 @@ namespace GradeBook
             book.ThisName(nameInput);
           }
         }
-        if (input == "H")
+        if (input == "h" || input == "H")
         {
           book.HighestGrade();
         }
-        if (input == "L")
+        if ( input == "l" || input == "L")
         {
           book.LowestGrade();
         }
-        if (input == "ST")
+        if (input == "st" || input == "ST")
         {
           book.ShowStatistics();
         }
-        if ( input == "GS" )
+        if (input == "gs" || input == "GS" )
                 {
                     var stats = book.GetStats();
                     WriteLine($"{stats.Average}, {stats.High}, {stats.Low}");

@@ -147,6 +147,7 @@ namespace GradeBook
             result.Average = 0.0;
             result.High = double.MinValue;
             result.Low = double.MaxValue;
+            //result.Letter = '';
 
             //foreach ( var grade in grades )
             //{
@@ -166,9 +167,29 @@ namespace GradeBook
 
             result.Average /= grades.Count;
 
+            switch (result.Average)
+            {
+                case var d when d > 90:
+                    result.Letter = 'A';
+                    break;
+                case var d when d > 80:
+                    result.Letter = 'B';
+                    break;
+                case var d when d > 70:
+                    result.Letter = 'C';
+                    break;
+                case var d when d > 60:
+                    result.Letter = 'C';
+                    break;
+                default:
+                    result.Letter = 'F';
+                    break;
+            }
+
             Console.WriteLine($"Average = {result.Average:N1}");
             Console.WriteLine($"High = {result.High}");
             Console.WriteLine($"Low = {result.Low}");
+            Console.WriteLine($"Letter = {result.Letter}");
             Console.WriteLine(Name);
 
             return result;
