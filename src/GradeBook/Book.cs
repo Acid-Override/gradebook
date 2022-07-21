@@ -2,6 +2,14 @@
 
 namespace GradeBook
 {
+
+  // not expecting anything back, just anouncing to the world that a grade was added
+  // similar to UDP internet protocol.
+
+  public delegate void GradeAddedDelegate(object sender, EventArgs args);
+  // can define delegate that takes in no parameters
+  // could also pass in (double grade)
+
   public class Book
   {
     public Book(string name)
@@ -44,20 +52,21 @@ namespace GradeBook
       if (grade <= 100 && grade >= 0)
       {
         grades.Add(grade);
+        if(GradeAdded != null)
+        {
+          GradeAdded(this, new EventArgs());
+        }
       }
       else
       {
-        //Console.WriteLine("Invalid value");
         throw new ArgumentException($"Invalid code :  {nameof(grade)}");
       }
-      //grades.Add(grade);
-      //foreach (var item in grades)
-      //{
-      //  System.Console.WriteLine($"The current number is = {item}");
-      //}
-      //System.Console.WriteLine(grades.Count);
-
     }
+
+    // need 'event' keyword
+    // just a field on Book Class until "event" keyword added
+    public event GradeAddedDelegate GradeAdded;
+
     public void ListGrades()
     {
       foreach (var item in grades)

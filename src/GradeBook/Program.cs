@@ -12,6 +12,12 @@ namespace GradeBook
     static void Main(string[] args) //main method
     {
       var book = new Book("The Grade Book");
+      book.GradeAdded += OnGradeAdded;
+      book.GradeAdded += OnGradeAdded;
+      book.GradeAdded -= OnGradeAdded;
+      book.GradeAdded += OnGradeAdded;
+      //book.GradeAdded = null // not legal reassign delegate, must be +=/-=
+
       //book.grades.Add(101);
       book.AddGrade(89.1);
       book.AddGrade(90.5);
@@ -129,6 +135,13 @@ namespace GradeBook
         }
       }
     }
+
+    static void OnGradeAdded(object sender, EventArgs e)
+    {
+      System.Console.WriteLine($"A grade was added");
+    }
+
+
   }
 
 }
